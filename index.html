@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nuch 💖</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        color: white;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        margin-top: 50px;
+        font-size: 38px;
+    }
+
+    p {
+        font-size: 20px;
+        margin: 15px;
+    }
+
+    img {
+        width: 260px;
+        border-radius: 20px;
+        margin: 20px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .counter {
+        font-size: 22px;
+        margin: 15px;
+        font-weight: bold;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    #yesBtn {
+        background: white;
+        color: #ff4b7d;
+    }
+
+    #yesBtn:hover {
+        background: #ff4b7d;
+        color: white;
+    }
+
+    #noBtn {
+        background: #ff4b7d;
+        color: white;
+        position: relative;
+    }
+
+    .heart {
+        position: fixed;
+        color: white;
+        animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>Happy Valentine’s Day นะอ้วน 💖</h1>
+
+<p>ตั้งแต่วันที่ 23 ธันวาคม 2568  
+วันที่เราเริ่มต้นกัน 🥰</p>
+
+<img src="S__4177923.jpg" alt="รูปของเรา">
+
+<div class="counter" id="loveCounter"></div>
+
+<p>อ้วนจะเป็นแฟนเค้าตลอดไปไหม? 💍</p>
+<button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+<button id="noBtn" onmouseover="moveButton()">No 😜</button>
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// วันที่เริ่มคบ
+const startDate = new Date("2025-12-23");
+const today = new Date();
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.getElementById("loveCounter").innerText =
+    "วันนี้เราคบกันมาแล้ว " + diffDays + " วันแล้วนะนุช 💕";
+
+// 💖 กด Yes แล้วรูปเรียงเป็นหัวใจ
+function sayYes() {
+    alert("รักนุชที่สุดเลย 💖");
+
+    const images = [
+        "n.jpg",
+        "1.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "6.jpg",
+        "7.jpg",
+        "S__3874820.jpg",
+        "8.jpg",
+        "9.jpg",
+        "u.jpg",
+        "2.jpg"
+    ];
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const size = 200; // ขนาดหัวใจ
+
+    images.forEach((src, i) => {
+        const angle = (i / images.length) * Math.PI * 2;
+
+        // สูตรหัวใจ (parametric heart curve)
+        const x = size * 16 * Math.pow(Math.sin(angle), 3);
+        const y = -size * (
+            13 * Math.cos(angle)
+            - 5 * Math.cos(2 * angle)
+            - 2 * Math.cos(3 * angle)
+            - Math.cos(4 * angle)
+        );
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.style.position = "absolute";
+        img.style.width = "120px";
+        img.style.borderRadius = "20px";
+        img.style.boxShadow = "0 10px 20px rgba(0,0,0,0.4)";
+        img.style.left = centerX + x / 20 - 60 + "px";
+        img.style.top = centerY + y / 20 - 60 + "px";
+        img.style.opacity = "0";
+        img.style.transition = "opacity 1s ease";
+
+        document.body.appendChild(img);
+
+        setTimeout(() => {
+            img.style.opacity = "1";
+        }, i * 200);
+    });
+}
+
+// ปุ่ม No หนี
+function moveButton() {
+    const button = document.getElementById("noBtn");
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+// หัวใจลอย
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+setInterval(createHeart, 300);
+</script>
+
+
+</script>
+
+</body>
+</html>
